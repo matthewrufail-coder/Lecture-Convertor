@@ -18,9 +18,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { lecture } = req.body;
+    const { lectureText, images } = req.body;
 
-    if (!lecture || typeof lecture !== "string") {
+    if (!lectureText || typeof lectureText !== "string") {
       return res.status(400).json({ error: "Invalid lecture content" });
     }
 
@@ -48,14 +48,17 @@ Output ONLY the rewritten content in markdown format. Start immediately without 
           content: `Convert this lecture into a Pathoma-style textbook chapter. Preserve the core information but make it more suitable for serious academic study. Add relevant context, clinical examples, and make the presentation more formal and structured.
 
 LECTURE CONTENT:
-${lecture}`,
+${lectureText}`,
         },
       ],
     });
 
     const textContent = message.content[0].text;
 
-    return res.status(200).json({ text: textContent });
+    return res.status(200).json({ 
+      text: textContent,
+      images: images || []
+    });
   } catch (error) {
     console.error("API Error:", error);
     return res.status(500).json({ error: error.message || "Server error" });
