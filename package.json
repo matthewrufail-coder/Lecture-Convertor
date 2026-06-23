@@ -1,0 +1,11 @@
+{
+  "name": "lecture-converter",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.20.0",
+    "pdfjs-dist": "^3.11.174",
+    "canvas": "^2.11.2",
+    "busboy": "^1.0.0"
+  }
+}
